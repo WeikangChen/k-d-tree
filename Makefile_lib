@@ -1,0 +1,23 @@
+CC = g++ -std=c++11 # GNU g++ compiler with C++11 suport
+CFLAGS = -Wall -c -O2 -g
+AFLAGS = -cvq #rcs    
+RM = rm -f 
+TARGET_LIB = KDTree.a
+
+SRCS = KDTree.cpp 
+OBJS = $(SRCS:.cpp=.o)
+
+.PHONY: all clean
+    
+all: ${TARGET_LIB}
+
+    
+$(TARGET_LIB): $(OBJS)
+	$(AR) $(AFLAGS) $@ $^
+    
+.cpp.o:
+	$(CC) $(CFLAGS) $< -o $@
+    
+
+clean:
+	-${RM} ${TARGET_LIB} ${OBJS} 
